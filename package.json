@@ -1,0 +1,31 @@
+{
+  "name": "agregador",
+  "version": "1.0.0",
+  "description": "agregador de produtos naturais",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.5"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "nodemon": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheustristao/radarnaturebaapi.git"
+  },
+  "author": "matheus oliveira tristao dos anjos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheustristao/radarnaturebaapi/issues"
+  },
+  "homepage": "https://github.com/matheustristao/radarnaturebaapi#readme"
+}
