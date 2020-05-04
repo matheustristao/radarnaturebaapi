@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient,
-      config = require('config');
+    config = require('config');
 'use strict';
 
 const server = config.get('database.server'),
@@ -97,7 +97,7 @@ module.exports = {
         });
     },
 
-    returnLoja: function (arrayLoja,regio) {
+    returnLoja: function (arrayLoja, regio) {
 
         var transformedArrayLoja = new Array();
 

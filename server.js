@@ -2,7 +2,7 @@ const express = require('express'),
       database = require('./database'); //Aqui eu carrego meu module database
       bodyParser = require("body-parser");
 
-var app = express();
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,9 +23,9 @@ app.use(function (request, response, next) {
     next();
 });
 
-app.get('/', function (req, res) {
+app.get('/', function (req,res) {
     res.status(202);
-    res.send("API running...");
+    return res.send("API running...");
 });
 
 app.get('/produtos', function (req, res) {
