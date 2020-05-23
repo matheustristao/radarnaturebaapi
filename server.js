@@ -55,6 +55,24 @@ app.get('/lojas', function (req, res) {
     });
 });
 
+app.get('/lojaDetail', function (req, res) {
+    database.returnLojaDetail(req.query.idLoja).then(function (result) {
+        res.status(202);
+        res.end(JSON.stringify(result));
+    }, function (err) {
+        res.end(err);
+    });
+});
+
+app.get('/produtosLoja', function (req, res) {
+    database.returnProdutosLoja(req.query.idLoja).then(function (result) {
+        res.status(202);
+        res.end(JSON.stringify(result));
+    }, function (err) {
+        res.end(err);
+    });
+});
+
 app.get('/categorias', function (req, res) {
     database.returnListaProdutoCategoria(req.query.idCategoria).then(function (result) {
         res.status(202);

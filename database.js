@@ -137,6 +137,71 @@ module.exports = {
             });
 
         });
+    },
+
+    returnLojaDetail: function (idLoja) {
+        return new Promise(function (resolve, reject) {
+
+            MongoClient.connect(url, function (err, db) {
+                if (err) reject(err);
+
+                var dbo = db.db(database);
+
+                dbo.collection("lojas").findOne(
+                    {
+                        "idLoja": parseInt(idLoja)
+                    },
+                    {
+                        projection:
+                        {
+                            _id: 0
+                        }
+                    },
+                    function (err, result) {
+                        if (err) {
+                            reject(err)
+                        } else {
+                            db.close();
+                            console.log(JSON.stringify(result));
+                            resolve(result);
+                        }
+                    });
+            });
+
+        });
+    },
+
+    returnProdutosLoja: function (idLoja) {
+        return new Promise(function (resolve, reject) {
+
+            MongoClient.connect(url, function (err, db) {
+                if (err) reject(err);
+
+                var dbo = db.db(database);
+
+                dbo.collection("produtos").find(
+                    {
+                        "lojas": {$elemMatch: {idLoja : parseInt(idLoja)}}
+                    },
+                    {
+                        projection:
+                        {
+                            _id: 0,
+                            lojas: 0
+                        }
+                    }).toArray(
+                        function (err, result) {
+                            if (err) {
+                                reject(err)
+                            } else {
+                                db.close();
+                                console.log(JSON.stringify(result));
+                                resolve(result);
+                            }
+                        });
+            });
+
+        });
     }
 
 }
