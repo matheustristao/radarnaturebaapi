@@ -97,15 +97,7 @@ module.exports = {
         });
     },
 
-    returnLoja: function (arrayLoja, regio) {
-
-        var transformedArrayLoja = new Array();
-
-        transformedArrayLoja = arrayLoja.split(",");
-
-        for (var i = 0; i < transformedArrayLoja.length; i++) {
-            transformedArrayLoja[i] = parseInt(transformedArrayLoja[i]);
-        }
+    returnLoja: function (idProduto, regio) {
 
         return new Promise(function (resolve, reject) {
 
@@ -116,7 +108,7 @@ module.exports = {
 
                 dbo.collection("lojas").find(
                     {
-                        "idLoja": { "$in": transformedArrayLoja },
+                        "produtos": parseInt(idProduto),
                         "endereco.regio": regio
                     },
                     {
