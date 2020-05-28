@@ -65,7 +65,7 @@ app.get('/lojaDetail', function (req, res) {
 });
 
 app.get('/produtosLoja', function (req, res) {
-    database.returnProdutosLoja(req.query.idLoja).then(function (result) {
+    database.returnProdutosLoja(req.query.idProduto).then(function (result) {
         res.status(202);
         res.end(JSON.stringify(result));
     }, function (err) {

@@ -171,7 +171,15 @@ module.exports = {
         });
     },
 
-    returnProdutosLoja: function (idLoja) {
+    returnProdutosLoja: function (arrayProdutos) {
+        var transformedArrayProdutos = new Array();
+
+        transformedArrayProdutos = arrayProdutos.split(",");
+
+        for (var i = 0; i < transformedArrayProdutos.length; i++) {
+            transformedArrayProdutos[i] = parseInt(transformedArrayProdutos[i]);
+        }
+
         return new Promise(function (resolve, reject) {
 
             MongoClient.connect(url, function (err, db) {
@@ -181,13 +189,12 @@ module.exports = {
 
                 dbo.collection("produtos").find(
                     {
-                        "lojas": {$elemMatch: {idLoja : parseInt(idLoja)}}
+                        "idProduto": { "$in": transformedArrayProdutos }
                     },
                     {
                         projection:
                         {
-                            _id: 0,
-                            lojas: 0
+                            _id: 0
                         }
                     }).toArray(
                         function (err, result) {

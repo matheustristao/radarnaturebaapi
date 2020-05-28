@@ -12,7 +12,8 @@
         "enderecosVirtuais": {
             "facebook": "https://www.facebook.com/feellife.oficial",
             "instagram": "https://www.instagram.com/feellife.oficial"
-        }
+        },
+        "produtos":[1,2,3,4]
     },
     {
         "idLoja": 2,
@@ -36,7 +37,8 @@
         ],
         "enderecosVirtuais": {
             "website": "https://www.mundoverde.com.br/"
-        }
+        },
+        "produtos":[1,3,5]
     },
     {
         "idLoja": 3,
@@ -50,6 +52,7 @@
         ],
         "enderecosVirtuais": {
             "instagram": "https://www.instagram.com/monatialimentos/"
-        }
+        },
+        "produtos":[2,3,5]
     }
 ]
