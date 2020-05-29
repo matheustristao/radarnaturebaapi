@@ -97,7 +97,39 @@ module.exports = {
         });
     },
 
-    returnLoja: function (idProduto, regio) {
+    returnListaLoja: function (nome) {
+        return new Promise(function (resolve, reject) {
+
+            MongoClient.connect(url, function (err, db) {
+                if (err) reject(err);
+
+                var dbo = db.db(database);
+
+                dbo.collection("lojas").find(
+                    {
+                        "nomeLoja": new RegExp(nome, "i")
+                    },
+                    {
+                        projection:
+                        {
+                            _id: 0
+                        }
+                    }).toArray(
+                        function (err, result) {
+                            if (err) {
+                                reject(err)
+                            } else {
+                                db.close();
+                                console.log(JSON.stringify(result));
+                                resolve(result);
+                            }
+                        });
+            });
+
+        });
+    },
+
+    returnLoja: function (idProduto) {
 
         return new Promise(function (resolve, reject) {
 
@@ -108,8 +140,7 @@ module.exports = {
 
                 dbo.collection("lojas").find(
                     {
-                        "produtos": parseInt(idProduto),
-                        "endereco.regio": regio
+                        "produtos": parseInt(idProduto)
                     },
                     {
                         projection:

@@ -46,26 +46,40 @@ app.get('/produtoDetail', function (req, res) {
     });
 });
 
-app.get('/lojas', function (req, res) {
-    database.returnLoja(req.query.idProduto,req.query.regio).then(function (result) {
-        res.status(202);
-        res.end(JSON.stringify(result));
-    }, function (err) {
-        res.end(err);
-    });
-});
-
-app.get('/lojaDetail', function (req, res) {
-    database.returnLojaDetail(req.query.idLoja).then(function (result) {
-        res.status(202);
-        res.end(JSON.stringify(result));
-    }, function (err) {
-        res.end(err);
-    });
-});
-
 app.get('/produtosLoja', function (req, res) {
     database.returnProdutosLoja(req.query.idProduto).then(function (result) {
+        res.status(202);
+        res.end(JSON.stringify(result));
+    }, function (err) {
+        res.end(err);
+    });
+});
+
+// Lojas
+
+//Retorna quais lojam possuem um produto
+app.get('/lojas', function (req, res) {
+    database.returnLoja(req.query.idProduto).then(function (result) {
+        res.status(202);
+        res.end(JSON.stringify(result));
+    }, function (err) {
+        res.end(err);
+    });
+});
+
+//Retorna lista de lojas por nome
+app.get('/listalojas', function (req, res) {
+    database.returnListaLoja(req.query.nomeLoja).then(function (result) {
+        res.status(202);
+        res.end(JSON.stringify(result));
+    }, function (err) {
+        res.end(err);
+    });
+});
+
+//Retorna o detalhe das lojas
+app.get('/lojaDetail', function (req, res) {
+    database.returnLojaDetail(req.query.idLoja).then(function (result) {
         res.status(202);
         res.end(JSON.stringify(result));
     }, function (err) {
